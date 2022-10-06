@@ -10,5 +10,26 @@ function DrawArray() {
 
     setTimeout(() => {
         wrapper.removeClass('reDrawed');
-    },1000)
+    }, 1000)
+}
+
+// сортровка вставкой - лучший выбор сортировки для массивов малой размерности
+// принято решение "испортить" исходный массив, чтобы не менять логику DrawArray()
+function insertionSort() {
+    let n = array.length;
+    for (let i = 1; i < n; i++) {
+        let current = array[i];
+        let j = i - 1;
+        while ((j > -1) && (current < array[j])) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        array[j + 1] = current;
+    }
+}
+
+// сортировка массива array с последующей отрисовкой
+function drawSortedArray() {
+    insertionSort();
+    DrawArray();
 }
